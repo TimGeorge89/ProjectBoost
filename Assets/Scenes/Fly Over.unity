@@ -293,7 +293,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.32, y: 1.116, z: -3.35}
+  m_LocalPosition: {x: 1.32, y: 1.116, z: -3.68}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -429,12 +429,16 @@ PrefabInstance:
       value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4690058875378139439, guid: c86d61f58b64fc94b85e57eaad072452, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.2810116
+      objectReference: {fileID: 0}
+    - target: {fileID: 4690058875378139439, guid: c86d61f58b64fc94b85e57eaad072452, type: 3}
       propertyPath: m_LocalPosition.x
       value: 1.336
       objectReference: {fileID: 0}
     - target: {fileID: 4690058875378139439, guid: c86d61f58b64fc94b85e57eaad072452, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.933
+      value: 0.701
       objectReference: {fileID: 0}
     - target: {fileID: 4690058875378139439, guid: c86d61f58b64fc94b85e57eaad072452, type: 3}
       propertyPath: m_LocalPosition.z
@@ -487,15 +491,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4613095199693214573, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.000000007930818
+      value: -0.0000000027758
       objectReference: {fileID: 0}
     - target: {fileID: 4613095199693214573, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.504
+      value: 0.328
       objectReference: {fileID: 0}
     - target: {fileID: 4613095199693214573, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.06007759
+      value: 0.060085
       objectReference: {fileID: 0}
     - target: {fileID: 4613095199693214573, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
       propertyPath: m_LocalRotation.w
@@ -524,10 +528,6 @@ PrefabInstance:
     - target: {fileID: 4613095199693214573, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4613095200246626274, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}
-      propertyPath: m_audioClip
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6fc0920431a31ed44a64c42bc089dac2, type: 3}

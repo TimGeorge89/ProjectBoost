@@ -5,11 +5,13 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     //Variables and declarations
-    Rigidbody rb;
-    AudioSource audioSource;
-
     [SerializeField] float mainThrust = 100f;
     [SerializeField] float rotationSpeed = 10f;
+    [SerializeField] AudioClip mainEngine;
+    [SerializeField] ParticleSystem engineParticles;
+
+    Rigidbody rb;
+    AudioSource audioSource;
 
     // Start is called before the first frame update
     void Start()
@@ -29,17 +31,33 @@ public class Movement : MonoBehaviour
     {
         if(Input.GetKey(KeyCode.Space))
         {
-            rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
-
-            if(!audioSource.isPlaying)
-            {
-                audioSource.Play();
-            } 
+            StartThrusting();
         }
         else
         {
-            audioSource.Stop();
+            StopThrusting();
         }
+    }
+
+    void StartThrusting()
+    {
+        rb.AddRelativeForce(Vector3.up * mainThrust * Time.deltaTime);
+            //check to see if playing audio
+            if(!audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(mainEngine);
+            } 
+            //check to see if playing particles
+            if(!engineParticles.isPlaying)
+            {
+                engineParticles.Play();
+            }
+    }
+
+    void StopThrusting()
+    {
+        audioSource.Stop();
+        engineParticles.Stop();
     }
 
     void ProcessRotation()

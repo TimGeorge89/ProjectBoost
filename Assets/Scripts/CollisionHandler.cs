@@ -7,12 +7,21 @@ public class CollisionHandler : MonoBehaviour
 {
     //Variables
     Movement movementScript;
+    AudioSource audioSource;
+
+    bool isTransitioning = false;
+
+    [SerializeField] AudioClip victorySound;
+    [SerializeField] AudioClip crashSound;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem crashParticles;
     [SerializeField] float levelDelay = 1.5f;
 
     // Start is called before the first frame update
     void Start()
     {
-       movementScript = GetComponent<Movement>();
+        audioSource = GetComponent<AudioSource>();
+        movementScript = GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -23,6 +32,8 @@ public class CollisionHandler : MonoBehaviour
 
     void OnCollisionEnter(Collision other) 
     {
+        if(isTransitioning) { return; }
+
         switch (other.gameObject.tag)
         {
             case "Friendly":
@@ -39,18 +50,24 @@ public class CollisionHandler : MonoBehaviour
 
     void StartSuccessSequence()
     {
-        //TODO Add sound SFX on success
-        //TODO Add particle FX on success
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(victorySound);
+        successParticles.Play();
         movementScript.enabled = false;
         Invoke("LoadNextLevel", levelDelay);
     }
 
     void StartCrashSequence()
     {
-        //TODO Add sound SFX on crash
+        isTransitioning = true;
+        audioSource.Stop();
+        audioSource.PlayOneShot(crashSound);
+        crashParticles.Play();
         //TODO Add particle FX on crash
         movementScript.enabled = false;
         Invoke("ReloadLevel", levelDelay);
+        
     }
 
     // Restart at level 1

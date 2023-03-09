@@ -10,6 +10,7 @@ public class CollisionHandler : MonoBehaviour
     AudioSource audioSource;
 
     bool isTransitioning = false;
+    bool crashEnabled = true;
 
     [SerializeField] AudioClip victorySound;
     [SerializeField] AudioClip crashSound;
@@ -27,12 +28,22 @@ public class CollisionHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        SkipLevel();
+        GodMode();
     }
+
+    void GodMode()
+    {
+        if(Input.GetKeyDown(KeyCode.C))
+        {
+            crashEnabled = !crashEnabled;
+        }
+    }
+
 
     void OnCollisionEnter(Collision other) 
     {
-        if(isTransitioning) { return; }
+        if(isTransitioning || !crashEnabled) { return; }
 
         switch (other.gameObject.tag)
         {
@@ -43,7 +54,7 @@ public class CollisionHandler : MonoBehaviour
                 StartSuccessSequence();
                 break;
             default:
-                StartCrashSequence();
+                StartCrashSequence();      
                 break;   
         }
     }
@@ -64,7 +75,6 @@ public class CollisionHandler : MonoBehaviour
         audioSource.Stop();
         audioSource.PlayOneShot(crashSound);
         crashParticles.Play();
-        //TODO Add particle FX on crash
         movementScript.enabled = false;
         Invoke("ReloadLevel", levelDelay);
         
@@ -89,5 +99,13 @@ public class CollisionHandler : MonoBehaviour
             nextSceneIndex = 0;
         }
         SceneManager.LoadScene(nextSceneIndex);
+    }
+
+    void SkipLevel()
+    {
+        if (Input.GetKey(KeyCode.L))
+        {
+            LoadNextLevel();
+        }
     }
 }
